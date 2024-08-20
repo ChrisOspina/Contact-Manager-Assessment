@@ -2,8 +2,8 @@
 {
     public enum EmailType
     {
+        Primary,
         Personal,
-        Business,
-        Primary
+        Business        
     }
 }

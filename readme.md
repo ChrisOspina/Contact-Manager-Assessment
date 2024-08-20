@@ -1,3 +1,5 @@
+//TODO: Revise Markdown file to reflect your changes.
+
 # Contact Manager
 This solution contains an easy to use and simple contact manager. It also works well on mobile devices!
 
