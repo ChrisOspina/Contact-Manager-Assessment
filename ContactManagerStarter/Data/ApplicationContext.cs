@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace ContactManager.Data
 {
@@ -13,6 +14,7 @@ namespace ContactManager.Data
         public virtual DbSet<EmailAddress> EmailAddresses { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ApplicationContext> _logger;
 
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options, IConfiguration configuration)

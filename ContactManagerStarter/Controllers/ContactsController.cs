@@ -8,6 +8,7 @@ using ContactManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MailKit;
 using MimeKit;
 using MailKit.Net.Smtp;
@@ -18,6 +19,7 @@ namespace ContactManager.Controllers
     {
         private readonly ApplicationContext _context;
         private readonly IHubContext<ContactHub> _hubContext;
+        private readonly ILogger<ContactsController> _logger;
 
         public ContactsController(ApplicationContext context, IHubContext<ContactHub> hubContext)
         {
