@@ -35,9 +35,10 @@ $(function () {
         let emailAddressType = $('#newEmailAddressType').val();
         let emailTypeClass;
 
-        if (emailAddressType === "Personal") {
+        if (emailAddressType === "Personal" || emailAddressType === "Primary") {
             emailTypeClass = "badge-primary"; //blue badge
-        } else {
+        }
+        else {
             emailTypeClass = "badge-success"; //green badge
         }
 
@@ -131,6 +132,8 @@ $(function () {
             }).get();
         }
 
+
+
         function validateInputs(data) {
             let isValid = true;
             $('.invalidMessage').hide();
@@ -157,6 +160,7 @@ $(function () {
             LastName: $("#editContactLastName").val(),
             DOB: $("#editContactDOB").val(),
             Emails: getEmailAddresses(),
+            PrimaryEmail: $("#PrimaryEmail").val(),
             Addresses: getAddresses()
         };
 

@@ -13,6 +13,8 @@ using MailKit;
 using MimeKit;
 using MailKit.Net.Smtp;
 
+
+//I'm adding temporary comments for logger purposes
 namespace ContactManager.Controllers
 {
     public class ContactsController : Controller
@@ -21,12 +23,14 @@ namespace ContactManager.Controllers
         private readonly IHubContext<ContactHub> _hubContext;
         private readonly ILogger<ContactsController> _logger;
 
-        public ContactsController(ApplicationContext context, IHubContext<ContactHub> hubContext)
+        public ContactsController(ApplicationContext context, IHubContext<ContactHub> hubContext, ILogger <ContactsController> logger)
         {
             _context = context;
             _hubContext = hubContext;
+            _logger = logger;
         }
 
+        //handling delete contact
         public async Task<IActionResult> DeleteContact(Guid id)
         {
             var contactToDelete = await _context.Contacts
@@ -48,6 +52,7 @@ namespace ContactManager.Controllers
             return Ok();
         }
 
+        //handling edit contact
         public async Task<IActionResult> EditContact(Guid id)
         {
             var contact = await _context.Contacts
@@ -74,6 +79,7 @@ namespace ContactManager.Controllers
             return PartialView("_EditContact", viewModel);
         }
 
+        //handling return contacts
         public async Task<IActionResult> GetContacts()
         {
             var contactList = await _context.Contacts
@@ -88,12 +94,15 @@ namespace ContactManager.Controllers
                 return View();
             }
 
+        //handle new contact return
         public IActionResult NewContact()
         {
             return PartialView("_EditContact", new EditContactViewModel());
         }
 
         [HttpPost]
+
+        //Saving contact
         public async Task<IActionResult> SaveContact([FromBody]SaveContactViewModel model)
         {
             var contact = model.ContactId == Guid.Empty

@@ -1,4 +1,3 @@
-//TODO: Revise Markdown file to reflect your changes.
 
 # Contact Manager
 This solution contains an easy to use and simple contact manager. It also works well on mobile devices!
@@ -40,4 +39,4 @@ This solution contains an easy to use and simple contact manager. It also works 
 * Implemented the ILogger Interface for debugging purposes
 * Converted the Date of Birth and Title text fields into a Datepicker and a dropodown menu respectively.
 * Added an enum class to represent the types of buisness titles
-* 
+* The Primary Email option is now available in the add/edit contact
