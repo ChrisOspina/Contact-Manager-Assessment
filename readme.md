@@ -34,3 +34,10 @@ This solution contains an easy to use and simple contact manager. It also works 
 * If you wish to edit a contact, just double click on their name and you will be greeted by the Edit Contact popup window. Once you are finished, be sure to press the green **Save** button to save your changes. Use the **Cancel** button to discard any unwanted changes.
 
 * To delete a contact just press the red **X** and confirm that you want to delete that contact.
+
+## Changes
+
+* Implemented the ILogger Interface for debugging purposes
+* Converted the Date of Birth and Title text fields into a Datepicker and a dropodown menu respectively.
+* Added an enum class to represent the types of buisness titles
+* 
