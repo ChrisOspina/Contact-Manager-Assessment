@@ -17,10 +17,11 @@ namespace ContactManager.Data
         private readonly ILogger<ApplicationContext> _logger;
 
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options, IConfiguration configuration)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options, IConfiguration configuration, ILogger<ApplicationContext> logger)
             : base(options)
         {
             _configuration = configuration;
+            _logger = logger;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -14,7 +14,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 
 
-//I'm adding temporary comments for logger purposes
+//TODO: Impelement Try/Catch blocks
 namespace ContactManager.Controllers
 {
     public class ContactsController : Controller
@@ -33,12 +33,14 @@ namespace ContactManager.Controllers
         //handling delete contact
         public async Task<IActionResult> DeleteContact(Guid id)
         {
+            _logger.LogInformation("Deleting contact");
             var contactToDelete = await _context.Contacts
                 .Include(x => x.EmailAddresses)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (contactToDelete == null)
             {
+                _logger.LogError("There are no contacts to delete");
                 return BadRequest();
             }
 
@@ -49,10 +51,12 @@ namespace ContactManager.Controllers
 
             await _hubContext.Clients.All.SendAsync("Update");
 
+            _logger.LogInformation("Contact removed");
             return Ok();
+           
         }
 
-        //handling edit contact
+  
         public async Task<IActionResult> EditContact(Guid id)
         {
             var contact = await _context.Contacts
@@ -62,6 +66,7 @@ namespace ContactManager.Controllers
 
             if (contact == null)
             {
+                _logger.LogError("Contact not found");
                 return NotFound();
             }
 
@@ -75,11 +80,10 @@ namespace ContactManager.Controllers
                 EmailAddresses = contact.EmailAddresses,
                 Addresses = contact.Addresses
             };
-
+            _logger.LogInformation("Contact information updated");
             return PartialView("_EditContact", viewModel);
         }
 
-        //handling return contacts
         public async Task<IActionResult> GetContacts()
         {
             var contactList = await _context.Contacts
@@ -94,32 +98,31 @@ namespace ContactManager.Controllers
                 return View();
             }
 
-        //handle new contact return
         public IActionResult NewContact()
         {
             return PartialView("_EditContact", new EditContactViewModel());
         }
 
         [HttpPost]
-
-        //Saving contact
         public async Task<IActionResult> SaveContact([FromBody]SaveContactViewModel model)
         {
+            _logger.LogInformation("Saving contact");
             var contact = model.ContactId == Guid.Empty
                 ? new Contact { Title = model.Title, FirstName = model.FirstName, LastName = model.LastName, DOB = model.DOB }
                 : await _context.Contacts.Include(x => x.EmailAddresses).Include(x => x.Addresses).FirstOrDefaultAsync(x => x.Id == model.ContactId);
 
             if (contact == null)
             {
+                _logger.LogError("Contact not found");
                 return NotFound();
             }
 
             _context.EmailAddresses.RemoveRange(contact.EmailAddresses);
-            _context.Addresses.RemoveRange(contact.Addresses);
-
+            _context.Addresses.RemoveRange(contact.Addresses);         
 
             foreach (var email in model.Emails)
             {
+                _logger.LogInformation("Saving the email address ${email.Email} into contact", email.Email);
                 contact.EmailAddresses.Add(new EmailAddress
                 {
                     Type = email.Type,
@@ -130,6 +133,7 @@ namespace ContactManager.Controllers
 
             foreach (var address in model.Addresses)
             {
+                //_logger.LogInformation("Sav")
                 contact.Addresses.Add(new Address
                 {
                     Street1 = address.Street1,
@@ -140,24 +144,33 @@ namespace ContactManager.Controllers
                     Type = address.Type
                 });
             }
-
+            
+            _logger.LogInformation("Saving title into contact");
             contact.Title = model.Title;
+
+            _logger.LogInformation("Saving first and last name into contact");
             contact.FirstName = model.FirstName;
             contact.LastName = model.LastName;
+
+            _logger.LogInformation("Saving Date of Birth into contact");
             contact.DOB = model.DOB;
 
             if (model.ContactId == Guid.Empty)
             {
+                _logger.LogInformation($"ContactId: {model.ContactId} added");
                 await _context.Contacts.AddAsync(contact);
             }
             else
             {
+                _logger.LogInformation($"ContactId: {model.ContactId} updated");
                 _context.Contacts.Update(contact);
             }
 
 
             await _context.SaveChangesAsync();
             await _hubContext.Clients.All.SendAsync("Update");
+
+            _logger.LogInformation("Contact information saved");
 
             return Ok();
         }
