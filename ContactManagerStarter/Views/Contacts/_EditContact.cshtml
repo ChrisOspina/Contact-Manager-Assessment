@@ -50,7 +50,7 @@
                         {
                             <li class="list-group-item emailListItem" data-email="@emailAddress.Email" data-type="@emailAddress.Type">
                                 @{
-                                    if (emailAddress.Type == EmailType.Personal)
+                                    if (emailAddress.Type == EmailType.Personal || emailAddress.Type == EmailType.Primary)
                                     {
                                         <span class="badge badge-primary m-l-10"> @emailAddress.Type</span>
                                     }
@@ -91,7 +91,7 @@
     <h7>Primary Email</h7>
     <div class="row">
         <div class="form-group col-md-12">
-            <input id="PrimaryEmail" type="email" placeholder="Primary Email" value = "@(Model.Primary !=null ? Model.Primary :string.Empty)" class="form-control" />
+            <input id="PrimaryEmail" type="email" placeholder="Primary Email" class="form-control" />
             <div id="invalidEmailFeedback" class="invalidMessage">
                 Please provide a valid email.
             </div>

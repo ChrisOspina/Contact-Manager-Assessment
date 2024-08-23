@@ -16,6 +16,5 @@ namespace ContactManager.Models
         public List<EmailAddress> EmailAddresses { get; set; }
         public List<Address> Addresses { get; set; }
 
-        public EmailAddress PrimaryEmail { get; set; }
     }
 }

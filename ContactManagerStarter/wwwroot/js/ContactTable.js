@@ -1,5 +1,4 @@
 ﻿"use strict";
-
 $(function () {
     loadContactTable();
     initSignalr();
@@ -160,7 +159,6 @@ $(function () {
             LastName: $("#editContactLastName").val(),
             DOB: $("#editContactDOB").val(),
             Emails: getEmailAddresses(),
-            PrimaryEmail: $("#PrimaryEmail").val(),
             Addresses: getAddresses()
         };
 
