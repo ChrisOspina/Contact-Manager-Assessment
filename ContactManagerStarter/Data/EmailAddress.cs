@@ -10,7 +10,6 @@ namespace ContactManager.Data
         public string Email { get; set; }
         public EmailType Type { get; set; }
         public virtual Contact Contact { get; set; }
-
-        private bool IsPrimary { get; set; }
+       // private bool IsPrimary { get; set; }
     }
 }

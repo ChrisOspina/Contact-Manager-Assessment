@@ -1,4 +1,5 @@
 ﻿@using ContactManager.Data
+<!--TODO: Make primary email simpler-->
 
     <div class="modal-body">
         <h4 class="">@(Model.Id != Guid.Empty ? "Edit Contact" : "New Contact")</h4>
@@ -86,16 +87,6 @@
             <div class="form-group col-md-2">
                 <button id="addNewEmail" class="btn btn-info">Add</button>
             </div>
-        </div>
-
-    <h7>Primary Email</h7>
-    <div class="row">
-        <div class="form-group col-md-12">
-            <input id="PrimaryEmail" type="email" placeholder="Primary Email" class="form-control" />
-            <div id="invalidEmailFeedback" class="invalidMessage">
-                Please provide a valid email.
-            </div>
-        </div>
         </div>
 
         <h6>Address(s)</h6>

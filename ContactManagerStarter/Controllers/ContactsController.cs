@@ -14,7 +14,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 
 
-//TODO: Impelement Try/Catch blocks
+//TODO: Impelement Try/Catch blocks for error checking
 namespace ContactManager.Controllers
 {
     public class ContactsController : Controller
@@ -94,9 +94,9 @@ namespace ContactManager.Controllers
         }
 
         public IActionResult Index()
-            {
+        {
                 return View();
-            }
+        }
 
         public IActionResult NewContact()
         {

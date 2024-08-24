@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace ContactManager.Data
 {
@@ -17,7 +16,7 @@ namespace ContactManager.Data
         private readonly ILogger<ApplicationContext> _logger;
 
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options, IConfiguration configuration, ILogger<ApplicationContext> logger)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options, IConfiguration configuration,  ILogger<ApplicationContext> logger)
             : base(options)
         {
             _configuration = configuration;
