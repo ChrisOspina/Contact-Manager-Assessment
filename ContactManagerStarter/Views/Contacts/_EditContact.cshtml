@@ -1,9 +1,10 @@
 ﻿@using ContactManager.Data
-<!--TODO: Make primary email simpler-->
+
 
     <div class="modal-body">
         <h4 class="">@(Model.Id != Guid.Empty ? "Edit Contact" : "New Contact")</h4>
         <div class="row">
+        <!--Title-->
             <div class="form-group col-lg-2">
                 <label>Title*</label>
             <select id="newEmailAddressType" class="form-control" value="@(Model.Title != null ? @Model.Title : string.Empty)">
@@ -17,6 +18,8 @@
                     Please provide a Title.
                 </div>
             </div>
+
+            <!--First Name-->
             <div class="form-group col-lg-3">
                 <label>First Name*</label>
                 <input id="editContactFirstName" type="text" class="form-control" value="@(Model.FirstName != null ? @Model.FirstName : string.Empty)">
@@ -24,21 +27,27 @@
                     Please provide a valid First Name.
                 </div>
             </div>
+
+            <!--Last Name-->
             <div class="form-group col-lg-3">
                 <label>Last Name*</label>
                 <input id="editContactLastName" type="text" class="form-control" value="@(Model.LastName != null ? @Model.LastName : string.Empty)">
                 <div id="invalidLastNameFeedback" class="invalidMessage">
                     Please provide a valid Last Name.
                 </div>
+
+            <!--Date of Birth-->
             </div>
             <div class="form-group col-lg-4">
                 <label>Date of Birth*</label>
-                <input id="editContactDOB" class="form-control" type="date" value="@(Model.DOB != null ? @Model.DOB.ToString("MM-dd-yyyy") : string.Empty)">
+                <input id="editContactDOB" class="form-control" type="date" value="@(Model.DOB != null ? @Model.DOB.ToString("MM-dd-yyyy") : string.Empty)" min="1970-01-01" max="2006-12-31">
                 <div id="invalidDOBFeedback" class="invalidMessage">
                     Please provide a valid Date of Birth.
                 </div>
             </div>
         </div>
+
+        <!--Emails-->
 
         <h6>Email(s)</h6>
 
@@ -88,6 +97,8 @@
                 <button id="addNewEmail" class="btn btn-info">Add</button>
             </div>
         </div>
+
+        <!--Addresses-->
 
         <h6>Address(s)</h6>
 
