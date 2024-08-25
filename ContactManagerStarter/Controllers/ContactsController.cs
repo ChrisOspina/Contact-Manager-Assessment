@@ -15,7 +15,7 @@ using MailKit.Net.Smtp;
 using System.Data.Common;
 
 
-//TODO: Impelement Try/Catch blocks for error checking
+
 namespace ContactManager.Controllers
 {
     public class ContactsController : Controller

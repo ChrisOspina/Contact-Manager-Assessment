@@ -35,8 +35,8 @@ This solution contains an easy to use and simple contact manager. It also works 
 * To delete a contact just press the red **X** and confirm that you want to delete that contact.
 
 ## Changes
-
 * Implemented the ILogger Interface for debugging purposes
 * Converted the Date of Birth and Title text fields into a Datepicker and a dropodown menu respectively.
 * Added an enum class to represent the types of buisness titles
-* The Primary Email option is now available in the add/edit contact
+* The Primary Email option is now available in the add/edit contact through the enum
+* The ContactsController now has try/catch blocks to check and handle any potential errors
